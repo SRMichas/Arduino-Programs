@@ -15,7 +15,7 @@ void setup(){
 }
 
 void loop(){
-  float   available = 0, volume = 0, volume2 = 0,porcen=0,
+  float   availableSpace = 0, volume = 0, volume2 = 0,porcen=0,
           used = 0,turns = 10, area = 0, radius = 0;
   radius = diameter / 2;
   area = pi * (radius * radius);
@@ -23,14 +23,14 @@ void loop(){
   volume = area * heigth;
   
   for(float i = 0; i < turns; i++){ 
-    available += distance();
+    availableSpace += distance();
     delay(10);
   }
   //get an average of the distance
-  available /= turns;
+  availableSpace /= turns;
   
-  if( available < heigth){ // Prevent to read a larger distance than the heigth
-    used = heigth - available;
+  if( availableSpace < heigth){ // Prevent to read a larger distance than the heigth
+    used = heigth - availableSpace ;
     //We calculate the volume of the liquid
     volume2 = area * used;
 
@@ -49,12 +49,12 @@ void loop(){
   }  
 }
 float distance(){
-    float distance = 0.0,time = 0.0;
+    float distance = 0.0,timel = 0.0;
     digitalWrite(TR, LOW);
     delayMicroseconds(5);
     digitalWrite(TR, HIGH);
     delayMicroseconds(10);
-    time = pulseIn(EC,HIGH);
+    timel = pulseIn(EC,HIGH);
     distance = time * 0.01716;
   return distance;
 }
